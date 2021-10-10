@@ -1,8 +1,10 @@
 import requests
 import datetime
+from loggerset import logger
 from bs4 import BeautifulSoup
 
 def crawlStockData(stockCode):
+
     url = 'https://finance.naver.com/item/main.nhn?code=' + stockCode
 
     response = requests.get(url)
@@ -18,8 +20,9 @@ def crawlStockData(stockCode):
         now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     else:
         now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    
+
+    logger.info('crawled current stock price %s %d', stockCode, price)
     return now, price
 
-
-crawlStockData('035720')
+if __name__ == '__main__':
+    crawlStockData('035720')
