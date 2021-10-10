@@ -31,16 +31,13 @@ def isShort_Full_Mae(macd, signal):
         return "SELL"
 
 def getEMA_MACD(name):
-    # cursor = db.get_cursor()
     result = db.throwQuery(f"""SELECT code,name,time,Close FROM price WHERE name="{name}";""")
     df = pd.DataFrame(result)
-    # df['EMA20'] = EMA(df)
     df['time'] = pd.to_datetime(df['time'], format='%Y-%m-%d')
     df['year'] = df['time'].dt.year
     df['month'] = df['time'].dt.month
     df['day'] = df['time'].dt.day
     MACD(df)
-    # print(df)
     df['isLongTermFullmaesu'] = df.apply(lambda x: isLong_Full_Mae(x['macd'], x['signalLine']), axis=1)
     df['isShortTermFullmaesu'] = df.apply(lambda x: isShort_Full_Mae(x['macd'], x['signalLine']), axis=1)
     return df

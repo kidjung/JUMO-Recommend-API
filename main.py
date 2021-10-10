@@ -1,7 +1,4 @@
 from flask import Flask, current_app, request, jsonify, Response
-from sqlalchemy import create_engine, text
-# from flask.json import JSONEncoder
-# import DBconnector as db
 import dataframeconvertor
 app = Flask (__name__)
  
