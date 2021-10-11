@@ -42,4 +42,3 @@ def getEMA_MACD(name):
     df['isShortTermFullmaesu'] = df.apply(lambda x: isShort_Full_Mae(x['macd'], x['signalLine']), axis=1)
     return df
 
-# print(getEMA_MACD('경동인베스트'))
